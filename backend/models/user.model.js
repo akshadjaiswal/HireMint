@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
-    firstName: {
+    fullName: {
         type: String,
         required: true
     },
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         enum: ['student', 'recruiter'],
         required: true
     },
-    profie: {
+    profile: {
         bio: { type: String },
         skills: [{ type: String }],
         resume: { type: String },//URL to Resume File

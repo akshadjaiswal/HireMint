@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors"
 import dotenv from "dotenv"
 import connectDB from "./utils/db.js";
+import UserRoute from "./routes/user.route.js";
 const app = express()
 dotenv.config({})
 
@@ -19,12 +20,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors(corsOptions));
 
-app.get("/home", (req, res) => {
-    return res.status(200).json({
-        message: "This is from backend",
-        success: true
-    })
-})
+//api's
+app.use("/api/v1/user", UserRoute)
 
 connectDB().then(() => {
     try {
