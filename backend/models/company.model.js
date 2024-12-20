@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const companyModel = new mongoose.Schema({
+const companySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -13,11 +13,9 @@ const companyModel = new mongoose.Schema({
     },
     location: {
         type: String,
-        required: true
     },
     logo: {
         type: String,
-        required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -27,4 +25,4 @@ const companyModel = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-export const Company = mongoose.model('Company', companyModel)
+export const Company = mongoose.model('Company', companySchema)
