@@ -29,7 +29,7 @@ app.use("/api/v1/company", CompanyRoute)
 app.use("/api/v1/job", JobRoute)
 app.use("/api/v1/application", ApplicationRoute)
 
-
+// DB connection before server initialization
 connectDB().then(() => {
     try {
         app.listen(PORT, () => {
