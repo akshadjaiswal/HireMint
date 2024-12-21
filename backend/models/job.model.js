@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema({
     title: {
-        tyoe: String,
+        type: String,
         required: true
     },
     description: {
@@ -13,6 +13,10 @@ const jobSchema = new mongoose.Schema({
         type: String,
     }],
     salary: {
+        type: Number,
+        required: true
+    },
+    experienceLevel: {
         type: Number,
         required: true
     },

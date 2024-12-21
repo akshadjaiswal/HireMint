@@ -5,6 +5,8 @@ import dotenv from "dotenv"
 import connectDB from "./utils/db.js";
 import UserRoute from "./routes/user.route.js";
 import CompanyRoute from "./routes/company.route.js"
+import JobRoute from "./routes/job.route.js"
+import ApplicationRoute from "./routes/application.route.js"
 const app = express()
 dotenv.config({})
 
@@ -24,6 +26,8 @@ app.use(cors(corsOptions));
 //api's
 app.use("/api/v1/user", UserRoute)
 app.use("/api/v1/company", CompanyRoute)
+app.use("/api/v1/job", JobRoute)
+app.use("/api/v1/application", ApplicationRoute)
 
 
 connectDB().then(() => {
