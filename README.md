@@ -54,5 +54,3 @@ Contributions are always welcome! Whether it’s fixing bugs, improving document
 2. Create a new branch for your feature/bug fix.  
 3. Submit a pull request for review.  
 
-## License  
-HireMint is licensed under the [MIT License](LICENSE).
