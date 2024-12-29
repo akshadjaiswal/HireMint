@@ -6,8 +6,10 @@ import {
 } from "@radix-ui/react-popover";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Button } from "../ui/button";
+import { LogOut, User2 } from "lucide-react";
 
 const Navbar = () => {
+  const user = false;
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -22,43 +24,53 @@ const Navbar = () => {
             <li>Jobs</li>
             <li>Browse</li>
           </ul>
-
-          <Popover>
-            <PopoverTrigger asChild>
-              <Avatar className=" cursor-pointer w-10 h-10 rounded-full overflow-hidden">
-                <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
-                  className="w-full h-full object-cover"
-                />
-              </Avatar>
-            </PopoverTrigger>
-            <PopoverContent className="w-80 p-4 bg-white rounded-lg shadow-lg flex flex-col  gap-3">
-              <div className="flex gap-2 space-y-1">
-                <Avatar className="w-8 h-8 rounded-full overflow-hidden">
+          {!user ? (
+            <div className="flex items-center gap-2">
+              <Button variant="outline">Login</Button>
+              <Button className="bg-[#6A38C2] rounded-lg hover:bg-[#6b2bd9]">
+                SignUp
+              </Button>
+            </div>
+          ) : (
+            <Popover>
+              <PopoverTrigger asChild>
+                <Avatar className=" cursor-pointer w-10 h-10 rounded-full overflow-hidden">
                   <AvatarImage
                     src="https://github.com/shadcn.png"
                     alt="@shadcn"
                     className="w-full h-full object-cover"
                   />
                 </Avatar>
-                <div>
-                  <h4 className="font-bold">Akshad Jaiswal</h4>
-                  <p className="text-sm  text-muted-foreground">
-                    Lorem ipsum dolor sit amet.
-                  </p>
+              </PopoverTrigger>
+              <PopoverContent className="w-80 p-4 bg-white rounded-lg shadow-lg flex flex-col  gap-3">
+                <div className="flex gap-2 space-y-1">
+                  <Avatar className="w-8 h-8 rounded-full overflow-hidden">
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                      className="w-full h-full object-cover"
+                    />
+                  </Avatar>
+                  <div>
+                    <h4 className="font-bold">Akshad Jaiswal</h4>
+                    <p className="text-sm  text-muted-foreground">
+                      Lorem ipsum dolor sit amet.
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col text-gray-600">
-                <div>
-                  <Button variant="link">View prolfile</Button>
+                <div className="flex flex-col my-2 text-gray-600">
+                  <div className="flex w-fit items-center gap-2 cursor-pointer">
+                    <User2 />
+                    <Button variant="link">View prolfile</Button>
+                  </div>
+                  <div className="flex w-fit items-center gap-2 cursor-pointer">
+                    <LogOut />
+                    <Button variant="link">Logout</Button>
+                  </div>
                 </div>
-                <div>
-                  <Button variant="link">Logout</Button>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
+              </PopoverContent>
+            </Popover>
+          )}
         </div>
       </div>
     </div>
