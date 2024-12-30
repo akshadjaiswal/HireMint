@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser());
 const corsOptions = {
     origin: "http://localhost:5173",
-    credential: true
+    credentials: true
 }
 
 const PORT = process.env.PORT || 3000;
