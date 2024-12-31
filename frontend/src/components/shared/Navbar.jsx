@@ -21,7 +21,9 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
-            <li>Home</li>
+            <Link to={"/"}>
+              <li>Home</li>
+            </Link>
             <li>Jobs</li>
             <li>Browse</li>
           </ul>
@@ -32,7 +34,7 @@ const Navbar = () => {
               </Link>
               <Link to="/signup">
                 {" "}
-                <Button className="bg-[#6A38C2] rounded-lg hover:bg-[#6b2bd9]">
+                <Button className="bg-[#6A38C2] rounded-lg hover:bg-[#5b2bd9]">
                   SignUp
                 </Button>
               </Link>
