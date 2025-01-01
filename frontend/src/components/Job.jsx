@@ -1,24 +1,58 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { Bookmark } from "lucide-react";
+import { Bookmark, Ghost } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
 
 const Job = () => {
   return (
-    <div>
-      <p>2 days ago</p>
-      <Button className="rounded-full" size="icon" variant="outline">
-        <Bookmark />
-      </Button>
+    <div className="p-5 rounded-md bg-white border border-gray-100 shadow-sm max-w-lg mx-auto lg:max-w-xl">
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-gray-500">2 days ago</p>
+        <Button className="rounded-full" size="icon" variant="outline">
+          <Bookmark />
+        </Button>
+      </div>
 
-      <div className="flex items-center gap-2 my-2">
-        <Button>
+      <div className="flex items-center gap-4 my-4">
+        <Button className="p-2" variant="outline" size="icon">
           <Avatar>
             <AvatarImage src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" />
           </Avatar>
         </Button>
+        <div>
+          <h1 className="font-medium text-lg sm:text-xl">Company Name</h1>
+          <p className="text-sm text-gray-500">India</p>
+        </div>
       </div>
-      <div></div>
+      <div>
+        <h1 className="font-bold text-lg my-2 sm:text-xl">Title</h1>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,
+          incidunt? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Non, ullam.
+        </p>
+      </div>
+      <div className="flex flex-wrap gap-2 mt-4">
+        <Badge className="text-blue-700 font-bold" variant={Ghost}>
+          12 Positions
+        </Badge>
+        <Badge className="text-[#F83002]" variant={Ghost}>
+          Remote
+        </Badge>
+        <Badge className="text-[#6A38C2]" variant={Ghost}>
+          6-8 LPA
+        </Badge>
+      </div>
+      <div className="flex flex-wrap items-center gap-3 mt-6">
+        <Button className="text-white bg-black w-full sm:w-auto">Details</Button>
+        <Button
+          variant="outline"
+          className="text-white bg-[#6A38C2] w-full sm:w-auto"
+        >
+          Save For Later
+        </Button>
+      </div>
     </div>
   );
 };
