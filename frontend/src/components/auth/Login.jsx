@@ -72,8 +72,8 @@ const Login = () => {
             <Input
               type="password"
               placeholder="Secret password"
-              value={input.password}
               name="password"
+              value={input.password}
               onChange={changeEventHandler}
             />
           </div>

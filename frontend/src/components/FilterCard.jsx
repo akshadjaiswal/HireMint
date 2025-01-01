@@ -33,7 +33,7 @@ const FilterCard = () => {
             <h1 className="font-bold text-lg">{data.filterType}</h1>
             {data.array.map((item, index) => {
               return (
-                <div className="flex items-center space-x-2 my-2">
+                <div className="flex items-center space-x-2 my-2 " key={index}>
                   <RadioGroupItem value={item} />
                   <Label>{item}</Label>
                 </div>
