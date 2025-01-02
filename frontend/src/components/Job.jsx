@@ -3,8 +3,11 @@ import { Button } from "./ui/button";
 import { Bookmark, Ghost } from "lucide-react";
 import { Avatar, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const Job = () => {
+  const navigate = useNavigate();
+  const jobId="wefvuui"
   return (
     <div className="p-5 rounded-md bg-white border border-gray-100 shadow-sm max-w-lg mx-auto lg:max-w-xl">
       <div className="flex items-center justify-between">
@@ -45,7 +48,12 @@ const Job = () => {
         </Badge>
       </div>
       <div className="flex flex-wrap items-center gap-3 mt-6">
-        <Button className="text-white bg-black w-full sm:w-auto">Details</Button>
+        <Button
+          onClick={() => navigate(`/description/${jobId}`)}
+          className="text-white bg-black w-full sm:w-auto"
+        >
+          Details
+        </Button>
         <Button
           variant="outline"
           className="text-white bg-[#6A38C2] w-full sm:w-auto"
