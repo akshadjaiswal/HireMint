@@ -19,7 +19,6 @@ import axios from "axios";
 const UpdateProfileDailog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((store) => store.auth);
- 
 
   const [input, setInput] = useState({
     fullName: user?.fullName,
@@ -42,6 +41,7 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    
     const formData = new FormData();
     formData.append("fullName", input.fullName);
     formData.append("email", input.email);
@@ -52,6 +52,7 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
       formData.append("file", input.file);
     }
     try {
+      setLoading(true);
       const res = await axios.post(
         `${USER_API_END_POINT}/profile/update`,
         formData,
@@ -67,8 +68,10 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
         toast.success(res.data.message);
       }
     } catch (error) {
-        console.log(error)
+      console.log(error);
       toast.error(error.response.data.message);
+    }finally{
+      setLoading(false)
     }
     setOpen(false);
     console.log(input);
