@@ -7,15 +7,19 @@ import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
 import AppliedJobTable from "./AppliedJobTable";
 import UpdateProfileDailog from "./UpdateProfileDailog";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import store from "@/redux/store";
+import { setIsResume } from "@/redux/authSlice";
 
 const skills = ["React", "Node", "Express", "MongoDB"];
-const isResume = true;
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useSelector((store) => store.auth);
+  const { user, isResume } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  if (user.profile.resume) {
+    dispatch(setIsResume(true));
+  }
   return (
     <div>
       <Navbar />
@@ -23,13 +27,15 @@ const Profile = () => {
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
             <Avatar className="h-24 w-24">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarImage
+                src={user?.profile?.profilePhoto}
+                alt="@shadcn"
+                className="w-full h-full object-cover"
+              />
             </Avatar>
             <div>
               <h1 className="font-medium text-xl">{user?.fullName}</h1>
-              <p className="text-sm ">
-                {user?.profile?.bio}
-              </p>
+              <p className="text-sm ">{user?.profile?.bio}</p>
             </div>
           </div>
           <Button
@@ -76,7 +82,7 @@ const Profile = () => {
               href={user?.profile?.resume}
               className="text-blue-500 w-full hover:underline cursor-pointer "
             >
-             {user?.profile?.resumeOriginalName}
+              {user?.profile?.resumeOriginalName}
             </a>
           ) : (
             <span>No Resume Uploaded</span>

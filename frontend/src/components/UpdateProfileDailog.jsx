@@ -39,9 +39,9 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
     const file = e.target.files?.[0];
     setInput({ ...input, file });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    
     const formData = new FormData();
     formData.append("fullName", input.fullName);
     formData.append("email", input.email);
@@ -70,8 +70,8 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
     setOpen(false);
     console.log(input);
@@ -152,13 +152,13 @@ const UpdateProfileDailog = ({ open, setOpen }) => {
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="file" className="">
-                  Resume
+                  Resume <span>(Image format only)</span> 
                 </Label>
                 <Input
                   id="file"
                   name="file"
                   type="file"
-                  accept="application/pdf"
+                  accept="application/image"
                   onChange={fileChangeHandler}
                   className="col-span-3"
                 />
