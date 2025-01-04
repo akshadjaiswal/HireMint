@@ -6,7 +6,7 @@ const isAuthenticated = async (req, res, next) => {
 
     // Check if token is missing
     if (!token) {
-      res.status(401).json({
+       return res.status(401).json({
         message: "User not Authenticated",
         success: false,
       });
@@ -26,7 +26,7 @@ const isAuthenticated = async (req, res, next) => {
     req.id = decode.userId;
     next();
   } catch (error) {
-    res.status(400).json({
+     return res.status(400).json({
       message: error.message,
       success: false,
     });
