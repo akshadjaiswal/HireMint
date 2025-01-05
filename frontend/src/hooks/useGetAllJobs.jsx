@@ -5,8 +5,10 @@ import { useDispatch } from "react-redux";
 import { setAllJobs } from "@/redux/jobSlice";
 
 const useGetAllJobs = () => {
+  console.log("useGetAllJobs hook triggering")
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log("useGetAllJobs useeffect triggering")
     const fetchAllJobs = async () => {
       try {
         const res = await axios.get(`${JOB_API_END_POINT}/get/`, {
@@ -18,8 +20,8 @@ const useGetAllJobs = () => {
       } catch (error) {
         console.log(error);
       }
-    }
-    fetchAllJobs()
+    };
+    fetchAllJobs();
   }, []);
 };
 

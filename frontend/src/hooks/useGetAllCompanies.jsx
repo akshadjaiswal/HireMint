@@ -1,26 +1,33 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { COMPANY_API_END_POINT, JOB_API_END_POINT } from "@/utils/constants";
+import { useEffect } from "react";
+import { COMPANY_API_END_POINT } from "@/utils/constants";
 import { useDispatch } from "react-redux";
-import { setSingleCompany } from "@/redux/companySlice";
+import { setCompanies } from "@/redux/companySlice";
 
-const useGetCompanyById = (companyId) => {
+const useGetAllCompanies = () => {
   const dispatch = useDispatch();
+  console.log("all companies calling hook")
+  
   useEffect(() => {
-    const fetchSingleCompany = async () => {
+    console.log("all companies useeffect hook")
+    const fetchCompanies = async () => {
       try {
-        const res = await axios.get(`${COMPANY_API_END_POINT}/get/${companyId}`, {
+        console.log("all companies fetch call")
+        const res = await axios.get(`${COMPANY_API_END_POINT}/get/`, {
           withCredentials: true,
         });
+
         if (res.data.success) {
-          dispatch(setSingleCompany(res.data.company));
+          console.log(res)
+          dispatch(setCompanies(res.data.companies));
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error fetching companies:", error);
       }
-    }
-    fetchSingleCompany()
-  }, [companyId , dispatch]);
+    };
+
+    fetchCompanies();
+  }, []);
 };
 
-export default useGetCompanyById;
+export default useGetAllCompanies;

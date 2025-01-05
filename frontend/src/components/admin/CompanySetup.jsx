@@ -107,7 +107,7 @@ const CompanySetup = () => {
               <Input
                 type="text"
                 name="name"
-                value={singleCompany.name}
+                value={input.name}
                 onChange={changeEventHandler}
               />
             </div>
@@ -116,7 +116,7 @@ const CompanySetup = () => {
               <Input
                 type="text"
                 name="description"
-                value={singleCompany.description}
+                value={input.description}
                 onChange={changeEventHandler}
               />
             </div>
@@ -125,7 +125,7 @@ const CompanySetup = () => {
               <Input
                 type="text"
                 name="website"
-                value={singleCompany.website}
+                value={input.website}
                 onChange={changeEventHandler}
               />
             </div>
@@ -134,7 +134,7 @@ const CompanySetup = () => {
               <Input
                 type="text"
                 name="location"
-                value={singleCompany.location}
+                value={input.location}
                 onChange={changeEventHandler}
               />
             </div>

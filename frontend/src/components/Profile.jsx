@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import store from "@/redux/store";
 import { setIsResume } from "@/redux/authSlice";
 
-const skills = ["React", "Node", "Express", "MongoDB"];
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
