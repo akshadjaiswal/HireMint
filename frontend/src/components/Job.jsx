@@ -32,7 +32,7 @@ const Job = ({ job }) => {
       <div className="flex items-center gap-4 my-4">
         <Button className="p-2" variant="outline" size="icon">
           <Avatar>
-            <AvatarImage src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" />
+            <AvatarImage className="w-full h-full object-cover" src={job?.company?.logo} />
           </Avatar>
         </Button>
         <div>
@@ -56,7 +56,7 @@ const Job = ({ job }) => {
           {job?.jobType}
         </Badge>
         <Badge className="text-[#6A38C2]" variant={Ghost}>
-          {job.salary}LPA
+          {job?.salary}LPA
         </Badge>
       </div>
       <div className="flex flex-wrap items-center gap-3 mt-6">

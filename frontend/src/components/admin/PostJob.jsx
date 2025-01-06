@@ -12,6 +12,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import axios from "axios";
+import { JOB_API_END_POINT } from "@/utils/constants";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 
 const PostJob = () => {
   const [input, setInput] = useState({
@@ -26,11 +31,16 @@ const PostJob = () => {
     companyId: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  //Company data
   const { companies } = useSelector((store) => store.company);
   console.log(companies);
-  const { user } = useSelector((store) => store.auth);
-  console.log(user._id);
 
+  //loggedin user
+  const { user } = useSelector((store) => store.auth);
+
+  //company register by user
   const adminCompany = companies.filter(
     (company) => company.userId === user._id
   );
@@ -40,11 +50,45 @@ const PostJob = () => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
+  const selectChangeHandler = (value) => {
+    const selectedCompany = adminCompany.find(
+      (company) => company.name.toLowerCase() == value
+    );
+    console.log(selectedCompany);
+    setInput({ ...input, companyId: selectedCompany._id });
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
+        headers: {
+          "Content-Length": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/admin/jobs");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.res.data.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <Navbar />
       <div className="flex items-center justify-center  my-5 w-screen">
-        <form className="p-8 max-w-5xl border border-gray-300 shadow-lg">
+        <form
+          onSubmit={submitHandler}
+          className="p-8 max-w-5xl border border-gray-300 shadow-lg"
+        >
           <div className="grid grid-cols-2 gap-4 ">
             <div>
               <Label>Title</Label>
@@ -129,14 +173,17 @@ const PostJob = () => {
           </div>
           <div className="mt-3">
             {adminCompany.length > 0 && (
-              <Select>
+              <Select onValueChange={selectChangeHandler}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select Company" />
                 </SelectTrigger>
-                <SelectContent side="bottom" align="start" forceMount className="bg-black text-white rounded-lg">
+                <SelectContent className="bg-black text-white rounded-lg">
                   <SelectGroup>
                     {adminCompany.map((company) => (
-                      <SelectItem  key={company._id} value={company.name}>
+                      <SelectItem
+                        key={company._id}
+                        value={company?.name?.toLowerCase()}
+                      >
                         {company.name}
                       </SelectItem>
                     ))}
@@ -145,9 +192,17 @@ const PostJob = () => {
               </Select>
             )}
           </div>
-          <Button className="text-white bg-black w-full mt-5 ">
-            Post New Job
-          </Button>
+          {loading ? (
+            <Button className="w-full my-4">
+              {" "}
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please Wait{" "}
+            </Button>
+          ) : (
+            <Button type="submit" className="w-full my-2  text-white bg-black">
+              Post Job
+            </Button>
+          )}
           {companies.length == 0 && (
             <p className="text-sm text-red-500 text-center font-bold mt-2">
               *Please regirster a company first, before posting a job

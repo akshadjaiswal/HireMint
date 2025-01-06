@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { Edit2, MoreHorizontal } from "lucide-react";
+import { Edit2, Eye, MoreHorizontal } from "lucide-react";
 import { Popover, PopoverContent } from "../ui/popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { useSelector } from "react-redux";
@@ -53,8 +53,8 @@ const AdminJobsTable = () => {
           {filterJobs &&
             filterJobs.map((job) => (
               <tr key={job._id}>
-                <TableCell className="text-lg font-bold">
-                  {job.company.name}
+                <TableCell className=" font-bold">
+                  {job.company ? job.company.name : "No Company"}
                 </TableCell>
                 <TableCell>{job.title}</TableCell>
                 <TableCell>{job.createdAt.split("T")[0]}</TableCell>
@@ -69,6 +69,10 @@ const AdminJobsTable = () => {
                         >
                           <Edit2 className="w-4" />
                           <span>Edit</span>
+                        </div> 
+                        <div onClick={()=>navigate(`/admin/jobs/${job._id}/applicants`)} className="flex items-center gap-2 w-fit cursor-pointer mt-1">
+                          <Eye className="w-4" />
+                          <span>Applicants</span>
                         </div>
                       </PopoverContent>
                     </PopoverTrigger>
