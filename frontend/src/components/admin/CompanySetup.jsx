@@ -21,12 +21,11 @@ const CompanySetup = () => {
     file: null,
   });
 
-
   const { singleCompany } = useSelector((store) => store.company);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const companyId = params.id;
-  useGetCompanyById(companyId)
+  useGetCompanyById(companyId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -75,16 +74,16 @@ const CompanySetup = () => {
     }
   };
 
-  console.log(singleCompany)
+  console.log(singleCompany);
   useEffect(() => {
     setInput({
-      name: singleCompany.name,
-      description: singleCompany.description,
-      website: singleCompany.website,
-      location: singleCompany.location,
-      file: singleCompany.file,
+      name: singleCompany.name || "",
+      description: singleCompany.description || "",
+      website: singleCompany.website || "",
+      location: singleCompany.location || "",
+      file: null,
     });
-  }, []);
+  }, [singleCompany]);
   return (
     <div>
       <Navbar />

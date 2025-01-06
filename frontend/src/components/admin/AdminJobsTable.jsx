@@ -13,6 +13,7 @@ import { Popover, PopoverContent } from "../ui/popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setSearchJobByText } from "@/redux/jobSlice";
 
 const AdminJobsTable = () => {
   const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
@@ -27,7 +28,12 @@ const AdminJobsTable = () => {
         if (!searchJobByText) {
           return true;
         }
-        return job?.name.toLowerCase().includes(searchJobByText.toLowerCase());
+        return (
+          job?.title.toLowerCase().includes(searchJobByText.toLowerCase()) ||
+          job?.company?.name
+            .toLowerCase()
+            .includes(searchJobByText.toLowerCase())
+        );
       });
     setFilterJobs(filteredJob);
   }, [allAdminJobs, searchJobByText]);
@@ -47,6 +53,9 @@ const AdminJobsTable = () => {
           {filterJobs &&
             filterJobs.map((job) => (
               <tr key={job._id}>
+                <TableCell className="text-lg font-bold">
+                  {job.company.name}
+                </TableCell>
                 <TableCell>{job.title}</TableCell>
                 <TableCell>{job.createdAt.split("T")[0]}</TableCell>
                 <TableCell className="text-right cursor-pointer ">
@@ -55,9 +64,7 @@ const AdminJobsTable = () => {
                       <MoreHorizontal />
                       <PopoverContent className="w-32">
                         <div
-                          onClick={() =>
-                            navigate(`/admin/jobs/${job._id}`)
-                          }
+                          onClick={() => navigate(`/admin/jobs/${job._id}`)}
                           className="flex items-center gap-2 w-fit cursor-pointer"
                         >
                           <Edit2 className="w-4" />
