@@ -10,11 +10,13 @@ import UpdateProfileDailog from "./UpdateProfileDailog";
 import { useDispatch, useSelector } from "react-redux";
 import store from "@/redux/store";
 import { setIsResume } from "@/redux/authSlice";
-
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
 
 const Profile = () => {
+  useGetAppliedJobs();
   const [open, setOpen] = useState(false);
   const { user, isResume } = useSelector((store) => store.auth);
+
   const dispatch = useDispatch();
   if (user.profile.resume) {
     dispatch(setIsResume(true));
