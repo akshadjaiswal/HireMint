@@ -21,7 +21,6 @@ const Applicants = () => {
             withCredentials: true,
           }
         );
-        console.log(res.data);
         dispatch(setApplicant(res.data.job));
         console.log(applicants);
       } catch (error) {}

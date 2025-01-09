@@ -23,10 +23,10 @@ const CompanySetup = () => {
 
   const { singleCompany } = useSelector((store) => store.company);
   const [loading, setLoading] = useState(false);
+  
   const params = useParams();
   const companyId = params.id;
   useGetCompanyById(companyId);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const changeEventHandler = (e) => {

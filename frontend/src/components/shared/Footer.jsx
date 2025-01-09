@@ -50,7 +50,7 @@ const Footer = () => {
         <ul className="mt-3 flex justify-center gap-6 md:gap-8">
           <li>
             <a
-              href="#"
+              href="https://x.com/akshad_999"
               rel="noreferrer"
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
@@ -69,7 +69,7 @@ const Footer = () => {
 
           <li>
             <a
-              href="#"
+              href="https://github.com/akshadjaiswal"
               rel="noreferrer"
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
@@ -92,7 +92,7 @@ const Footer = () => {
 
           <li>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/akshadsantoshjaiswal/"
               rel="noreferrer"
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"

@@ -17,7 +17,6 @@ import { setSearchJobByText } from "@/redux/jobSlice";
 
 const AdminJobsTable = () => {
   const { allAdminJobs, searchJobByText } = useSelector((store) => store.job);
-  console.log(allAdminJobs);
   const [filterJobs, setFilterJobs] = useState(allAdminJobs);
   const navigate = useNavigate();
 
