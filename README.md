@@ -25,6 +25,8 @@ HireMint is a comprehensive job portal application designed to connect job seeke
 
 ### Frontend  
 - **React.js**: Dynamic user interface and seamless navigation.  
+- **Tailwind css**: Designing 
+- **Shadcn-ui**: Reusable Components 
 
 ### Backend  
 - **Node.js**: Handles server-side logic.  
