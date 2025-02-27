@@ -40,11 +40,13 @@ HireMint is a comprehensive job portal application designed to connect job seeke
 - **bcrypt.js**: Encrypts passwords for added security.  
 
 ### Additional Tools and Libraries  
+
 - **Axios**: Simplifies API requests from the frontend to the backend.  
 - **Mongoose**: Provides an elegant MongoDB object modeling tool.  
 - **Redux** (optional): Manages state efficiently across the application.  
 
 ## Goals of HireMint  
+
 - Simplify the job application process for job seekers.  
 - Provide a robust platform for recruiters to find the right talent.  
 - Ensure data security and privacy for all users.  
